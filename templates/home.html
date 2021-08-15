@@ -1,0 +1,69 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+{% load static %}
+
+<head>
+<style>
+<!--  img {-->
+<!--  display: block;-->
+<!--  margin-left: auto;-->
+<!--  margin-right: auto;-->
+<!--}-->
+.logo{
+ margin-top: 100px;
+ display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.category{
+
+margin-top: 50px;
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+    <div class="row">
+        <div class="logo">
+        <div class="col-sm-12">
+            <img  class="img-fluid" src="{% static 'images/logo.png' %}">
+
+        </div>
+    </div>
+        </div>
+    <div class="category">
+    <div class="row">
+            <div class="col-sm-4">
+                <a href="/category/1" class="">
+                <figure class="figure">
+                 <img class="img-circle" src="{% static 'images/covid.png' %}" width="200px" height="150px">
+                    <figcaption class="figure-caption"><h3 align="center">Covid -19</h3></figcaption>
+</figure>
+                </a>
+<!--                <h4>Covid -19</h4>-->
+            </div>
+            <div class="col-sm-4">
+                <a href="/category/3" class="">
+                <figure class="figure">
+                 <img class="img-circle" src="{% static 'images/dengu.png' %}" width="200px" height="150px">
+                    <figcaption class="figure-caption"><h3 align="center">Dengue/Chikungunya</h3></figcaption>
+</figure>
+                </a>
+            </div>
+            <div class="col-sm-4">
+                <a href="/category/4" class="">
+                                <figure class="figure">
+
+                 <img class="img-circle" src="{% static 'images/cholera.png' %}" width="200px" height="150px">
+                                    <figcaption class="figure-caption"><h3 align="center">Cholera</h3></figcaption>
+</figure>
+                </a>
+            </div>
+
+    </div>
+</div>
+</div>
+</body>

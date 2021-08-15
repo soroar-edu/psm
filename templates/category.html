@@ -1,0 +1,120 @@
+<!--<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">-->
+<!--<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>-->
+<!--<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>-->
+<!------ Include the above in your HEAD tag ---------->
+{% extends "base.html" %}
+{% load static %}
+
+
+
+
+<body>
+
+
+{% block container %}
+<div class="container">
+<!--    <h3>Covid Hygine Items</h3>-->
+{% if category == 1 and hygenic_items|length > 0 %}
+    <table class="table table-hover table-bordered">
+        <thead><h4>Covid Hygine Items</h4></thead>
+      <tr>
+        <th>Item</th>
+        <th>Stock Quantity</th>
+        <th>Used Quantity</th>
+      </tr>
+    </thead>
+    <tbody>
+
+    {% for item in hygenic_items %}
+      <tr>
+        <td><img class="img-fluid" src="{{item.item.image.url}}" width="30px" height="30px">  {{item.item}}</td>
+        <td>{{item.stock_quantity}}</td>
+        <td>{{item.used_quantity}}</td>
+      </tr>
+
+    {% endfor %}
+    </tbody>
+  </table>
+    {% endif %}
+    {% if category == 1 and medical_items|length > 0 %}
+
+
+
+<table class="table table-hover table-bordered">
+        <thead><h4>Covid Medical Items</h4></thead>
+      <tr>
+        <th>Item</th>
+        <th>Stock Quantity</th>
+        <th>Used Quantity</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for item in medical_items %}
+      <tr>
+        <td><img class="img-fluid" src="{{item.item.image.url}}" width="30px" height="30px">  {{item.item}}</td>
+        <td>{{item.stock_quantity}}</td>
+        <td>{{item.used_quantity}}</td>
+      </tr>
+
+    {% endfor %}
+    </tbody>
+  </table>
+    {% endif %}
+
+
+
+    {% if category == 3 and dengu_items|length > 0 %}
+
+
+
+<table class="table table-hover table-bordered">
+        <thead><h4>Dengu Items</h4></thead>
+      <tr>
+        <th>Item</th>
+        <th>Stock Quantity</th>
+        <th>Used Quantity</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for item in dengu_items %}
+      <tr>
+        <td><img class="img-fluid" src="{{item.item.image.url}}" width="30px" height="30px">  {{item.item}}</td>
+        <td>{{item.stock_quantity}}</td>
+        <td>{{item.used_quantity}}</td>
+      </tr>
+
+    {% endfor %}
+    </tbody>
+  </table>
+    {% endif %}
+
+
+    {% if category == 4 and cholera_items|length > 0 %}
+
+
+
+<table class="table table-hover table-bordered">
+        <thead><h4>Cholera Items</h4></thead>
+      <tr>
+        <th>Item</th>
+        <th>Stock Quantity</th>
+        <th>Used Quantity</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for item in cholera_items %}
+      <tr>
+        <td><img class="img-fluid" src="{{item.item.image.url}}" width="30px" height="30px">  {{item.item}}</td>
+        <td>{{item.stock_quantity}}</td>
+        <td>{{item.used_quantity}}</td>
+      </tr>
+
+    {% endfor %}
+    </tbody>
+  </table>
+    {% endif %}
+
+</div>
+{% endblock %}
+
+</body>

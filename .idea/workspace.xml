@@ -3,7 +3,14 @@
   <component name="ChangeListManager">
     <list default="true" id="df74a109-5e8c-4d77-acec-ef74af116448" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/psm/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/psm/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/psm/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/psm/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/psm/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/psm/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/psm_project/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/psm_project/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/psm_project/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/psm_project/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/login.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />

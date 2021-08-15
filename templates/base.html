@@ -1,0 +1,95 @@
+{% load static %}
+
+<head>
+{% block head %}
+
+<!--  <title>Bootstrap Example</title>-->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <style>
+ th,td,h4{
+ text-align:center
+ }
+    </style>
+    {% endblock %}
+</head>
+<body>
+
+{% block nav %}
+
+<nav class="navbar navbar-expand-sm bg-light justify-content-center">
+  <!-- Brand -->
+  <a class="navbar-brand" href="/"><img  class="img-fluid" src="{% static 'images/logo.png' %}"width="100px" height="80px"></a>
+
+<!--    <span class="navbar-text">-->
+<!--    <img class="img-circle" src="{% static 'images/bd_logo.png' %}" width="80px" height="50px">   {{district}} Civil Surgeon Office-->
+<!--  </span>-->
+  <!-- Links -->
+  <a class="navbar-brand" href="/category/{{category}}">
+    <span class="navbar-text">
+    <img class="img-circle" src="{% static 'images/bd_logo.png' %}" width="80px" height="50px">   {{district}} Civil Surgeon Office
+  </span>
+  </a>
+  <ul class="navbar-nav">
+    <li class="nav-item">
+
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/national_stock/{{category}}">National Stock</a>
+    </li>
+
+    <!-- Dropdown -->
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+        Neighbour Stock
+      </a>
+      <div class="dropdown-menu">
+        <a class="dropdown-item" href="#">Link 1</a>
+        <a class="dropdown-item" href="#">Link 2</a>
+        <a class="dropdown-item" href="#">Link 3</a>
+      </div>
+    </li>
+      <li class="nav-item">
+      <a class="nav-link" href="#">Research Article</a>
+    </li>
+
+      <li class="nav-item">
+      <a class="nav-link" href="/logout"> <img class="img-circle" src="{% static 'images/logout.png' %}" width="30px" height="30px"> Logout</a>
+    </li>
+  </ul>
+</nav>
+<br>
+{% endblock %}
+
+{% block container %}
+<div class="container">
+    <table class="table table-hover table-bordered">
+    <thead>
+      <tr>
+        <th>Item</th>
+        <th>Stock Quantity</th>
+        <th>Used Quantity</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for item in district.district_stores.all %}
+      <tr>
+        <td><img class="img-fluid" src="{{item.item.image.url}}" width="30px" height="30px">  {{item.item}}</td>
+        <td>{{item.stock_quantity}}</td>
+        <td>{{item.used_quantity}}</td>
+      </tr>
+
+    {% endfor %}
+    </tbody>
+  </table>
+
+
+
+</div>
+{% endblock %}
+
+</body>
