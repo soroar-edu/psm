@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from psm.views import login, home, category, national_stock, update_stock
+from psm.views import login, home, category, national_stock, update_stock, adjacent_district
 from django.contrib.auth import views as auth_views
 from django.conf import settings
 from django.conf.urls.static import static
@@ -27,6 +27,7 @@ urlpatterns = [
     path('', home, name='home'),
     path('category/<int:id>', category, name='category'),
     path('national_stock/<int:id>', national_stock, name='national_stock'),
+    path('adjacent_stock/<int:district_id>/category/<int:id>', adjacent_district, name='adjacent_district'),
     path('update_stock/<int:id>', update_stock, name='update_stock')
 
 ]

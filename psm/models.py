@@ -91,3 +91,8 @@ class DistrictStore(models.Model):
 
     def __str__(self):
         return self.district.name
+
+
+class AdjacentDistrict(models.Model):
+    district = models.ForeignKey(District, on_delete=models.CASCADE, related_name='adjacent_districts')
+    adjacent_district = models.ManyToManyField(District,related_name='districts')

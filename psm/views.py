@@ -2,7 +2,7 @@ from django.shortcuts import render, HttpResponse
 from .models import Item
 from django.contrib.auth.decorators import login_required
 from django import forms
-from .models import DistrictStore
+from .models import DistrictStore, District
 from django.shortcuts import (get_object_or_404,
                               render,
                               HttpResponseRedirect)
@@ -60,21 +60,25 @@ def category(request, id):
 
 @login_required(login_url='/login')
 def national_stock(request, id):
+    district = request.user.district_user_permissions.first().district
     if id == 1:
         context = {
             'category': id,
+            'district': district,
             'hygenic_items': Item.objects.filter(category=2),
             'medical_items': Item.objects.filter(category=1),
         }
     if id == 3:
         context = {
             'category': id,
+            'district': district,
             'dengu_items': Item.objects.filter(category=3),
 
         }
     if id == 4:
         context = {
             'category': id,
+            'district': district,
             'cholera_items': Item.objects.filter(category=4),
 
         }
@@ -88,6 +92,7 @@ def update_stock(request, id):
     #     form = BookForm(request.POST, instance=book)
     # else:
     #     form = BookForm(instance=book)
+    district = request.user.district_user_permissions.first().district
     context = {}
 
     # fetch the object related to passed id
@@ -108,5 +113,43 @@ def update_stock(request, id):
     # add form dictionary to context
     context["form"] = form
     context["category"] = category_id
+    context['district'] = district
 
     return render(request, 'update_stock.html', context)
+
+
+@login_required(login_url='/login')
+def adjacent_district(request, district_id, id):
+    district = District.objects.get(id=district_id)
+    user_district = request.user.district_user_permissions.first().district
+    # print(id)
+    if id == 1:
+        context = {"district": user_district,
+                   'neighbour_district':district,
+                   'category': id,
+                   'hygenic_items': district.district_stores.filter(item__category=2),
+                   'medical_items': district.district_stores.filter(item__category=1),
+                   }
+    elif id == 3:
+        context = {"district": user_district,
+                   'neighbour_district': district,
+                   'category': id,
+                   'dengu_items': district.district_stores.filter(item__category=3),
+
+                   }
+    elif id == 4:
+        context = {"district": user_district,
+                   'neighbour_district': district,
+                   'category': id,
+                   'cholera_items': district.district_stores.filter(item__category=4),
+
+                   }
+    # print(context)
+    else:
+        context = {
+            'category': id,
+            'district': user_district,
+            'neighbour_district': district,
+        }
+
+    return render(request, 'adjacent_district.html', context)
