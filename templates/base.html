@@ -54,7 +54,7 @@
 
 
       <div class="dropdown-menu">
-        {% for district in district.adjacent_districts.first.adjacent_district.all %}
+        {% for district in district.neighbor_districts.first.neighbor_district.all %}
         <a class="dropdown-item" href="/adjacent_stock/{{district.id}}/category/{{category}}">{{district.name}}</a>
 <!--        <a class="dropdown-item" href="#">Link 2</a>-->
 <!--        <a class="dropdown-item" href="#">Link 3</a>-->

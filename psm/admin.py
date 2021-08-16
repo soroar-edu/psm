@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import District, DistrictUserPermission, Item, Notice, UserProfile, DistrictStore,AdjacentDistrict
+from .models import District, DistrictUserPermission, Item, Notice, UserProfile, DistrictStore,NeighborDistrict
 
 # from api.admin import GenericModelAdmin
 from django.contrib import admin
@@ -42,4 +42,4 @@ admin.site.register(DistrictUserPermission)
 admin.site.register(Item)
 admin.site.register(Notice)
 admin.site.register(UserProfile)
-admin.site.register(AdjacentDistrict)
+admin.site.register(NeighborDistrict)
