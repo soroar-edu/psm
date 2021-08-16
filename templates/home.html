@@ -21,6 +21,35 @@
 
 margin-top: 50px;
 }
+
+.overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 60%;
+  opacity: 0;
+  transition: .5s ease;
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.col-sm-4:hover .overlay {
+  opacity: 1;
+}
+.text {
+  color: white;
+  font-size: 20px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
 </style>
 </head>
 
@@ -40,6 +69,9 @@ margin-top: 50px;
                 <a href="/category/1" class="">
                 <figure class="figure">
                  <img class="img-circle" src="{% static 'images/covid.png' %}" width="200px" height="150px">
+                    <div class="overlay">
+    <div class="text">Covid 19</div>
+  </div>
                     <figcaption class="figure-caption"><h3 align="center">Covid -19</h3></figcaption>
 </figure>
                 </a>
@@ -49,6 +81,9 @@ margin-top: 50px;
                 <a href="/category/3" class="">
                 <figure class="figure">
                  <img class="img-circle" src="{% static 'images/dengu.png' %}" width="200px" height="150px">
+                     <div class="overlay">
+    <div class="text">Dengue/Chikungunya</div>
+  </div>
                     <figcaption class="figure-caption"><h3 align="center">Dengue/Chikungunya</h3></figcaption>
 </figure>
                 </a>
@@ -58,6 +93,9 @@ margin-top: 50px;
                                 <figure class="figure">
 
                  <img class="img-circle" src="{% static 'images/cholera.png' %}" width="200px" height="150px">
+                                     <div class="overlay">
+    <div class="text">Cholera</div>
+  </div>
                                     <figcaption class="figure-caption"><h3 align="center">Cholera</h3></figcaption>
 </figure>
                 </a>

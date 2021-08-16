@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from psm.views import login, home, category, national_stock
+from psm.views import login, home, category, national_stock, update_stock
 from django.contrib.auth import views as auth_views
 from django.conf import settings
 from django.conf.urls.static import static
@@ -26,7 +26,8 @@ urlpatterns = [
     path('logout/', auth_views.LogoutView.as_view(), {'next_page': '/login'}, name='logout'),
     path('', home, name='home'),
     path('category/<int:id>', category, name='category'),
-    path('national_stock/<int:id>', national_stock, name='national_stock')
+    path('national_stock/<int:id>', national_stock, name='national_stock'),
+    path('update_stock/<int:id>', update_stock, name='update_stock')
 
 ]
 if settings.DEBUG:
