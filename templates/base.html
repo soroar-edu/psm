@@ -11,7 +11,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <style>
- th,td,h4,h3{
+ th,td,h4,h3,p{
  text-align:center
  }
 <!-- a:hover {-->
@@ -66,10 +66,10 @@
       <a class="nav-link" href="#">Calculation</a>
     </li>
       <li class="nav-item">
-      <a class="nav-link" href="#">Research Article</a>
+      <a class="nav-link" href="/{{category}}/research_article">Research Article</a>
     </li>
        <li class="nav-item">
-      <a class="nav-link" href="#">Notice</a>
+      <a class="nav-link" href="/{{category}}/notice">Notice</a>
     </li>
       <li class="nav-item">
       <a class="nav-link" href="/logout"> <img class="img-circle" src="{% static 'images/logout.png' %}" width="30px" height="30px"> Logout</a>
@@ -81,26 +81,6 @@
 
 {% block container %}
 <div class="container">
-    <table class="table table-hover table-bordered">
-    <thead>
-      <tr>
-        <th>Item</th>
-        <th>Stock Quantity</th>
-        <th>Used Quantity</th>
-      </tr>
-    </thead>
-    <tbody>
-    {% for item in district.district_stores.all %}
-      <tr>
-        <td><img class="img-fluid" src="{{item.item.image.url}}" width="30px" height="30px">  {{item.item}}</td>
-        <td>{{item.stock_quantity}}</td>
-        <td>{{item.used_quantity}}</td>
-      </tr>
-
-    {% endfor %}
-    </tbody>
-  </table>
-
 
 
 </div>

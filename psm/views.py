@@ -1,11 +1,11 @@
-from django.shortcuts import render, HttpResponse
-from .models import Item
-from django.contrib.auth.decorators import login_required
 from django import forms
-from .models import DistrictStore, District
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import (get_object_or_404,
                               render,
                               HttpResponseRedirect)
+
+from .models import DistrictStore, District, Notice,ResearchArticle
+from .models import Item
 
 
 class DistrictStoreForm(forms.ModelForm):
@@ -125,7 +125,7 @@ def adjacent_district(request, district_id, id):
     # print(id)
     if id == 1:
         context = {"district": user_district,
-                   'neighbour_district':district,
+                   'neighbour_district': district,
                    'category': id,
                    'hygenic_items': district.district_stores.filter(item__category=2),
                    'medical_items': district.district_stores.filter(item__category=1),
@@ -153,3 +153,56 @@ def adjacent_district(request, district_id, id):
         }
 
     return render(request, 'adjacent_district.html', context)
+
+
+@login_required(login_url='/login')
+def notice(request, category_id):
+    if category_id == 2:
+        category_id = 1
+
+    context = {
+        "notice": Notice.objects.all(),
+        "district": request.user.district_user_permissions.first().district,
+        "category": category_id
+    }
+    return render(request, 'notice.html', context)
+
+
+@login_required(login_url='/login')
+def notice_details(request, category_id, id):
+    if category_id == 2:
+        category_id = 1
+
+    context = {
+        "notice": Notice.objects.filter(id=id).first(),
+        "district": request.user.district_user_permissions.first().district,
+        "category": category_id
+    }
+    return render(request, 'notice_details.html', context)
+
+
+
+@login_required(login_url='/login')
+def research_article(request, category_id):
+    if category_id == 2:
+        category_id = 1
+
+    context = {
+        "research_article": ResearchArticle.objects.all(),
+        "district": request.user.district_user_permissions.first().district,
+        "category": category_id
+    }
+    return render(request, 'research_article.html', context)
+
+
+@login_required(login_url='/login')
+def research_article_details(request, category_id, id):
+    if category_id == 2:
+        category_id = 1
+
+    context = {
+        "research_article": ResearchArticle.objects.filter(id=id).first(),
+        "district": request.user.district_user_permissions.first().district,
+        "category": category_id
+    }
+    return render(request, 'research_article_details.html', context)
