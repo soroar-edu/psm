@@ -30,8 +30,15 @@
           <td>{{item.request_to}}</td>
           <td>{{item.get_status_display}}</td>
           <td>{{item.created}}</td>
-        <td>      <a href="/request_stock/{{category}}/district/{{neighbour_district.id}}" class="btn btn-success btn-sm" role="button"><i class="fa fa-plus-circle"></i> Update Status</a>
+<!--          {{item.request_to}}-->
+          {% if item.request_to == district %}
+          {% if item.status == 1 %}
+
+        <td>
+            <a href="/requested_stock/{{category}}/update_status/{{item.id}}" class="btn btn-success btn-sm" role="button"><i class="fa fa-plus-circle"></i> Update Status</a>
 </td>
+          {% endif %}
+          {% endif %}
       </tr>
 
     {% endfor %}

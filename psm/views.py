@@ -26,6 +26,13 @@ class RequestedItemForm(forms.ModelForm):
             'quantity',)
 
 
+class RequestedStatusForm(forms.ModelForm):
+    class Meta:
+        model = RequestedItem
+        fields = (
+            'status',)
+
+
 def login(request):
     return render(request, 'login.html')
 
@@ -216,7 +223,7 @@ def research_article_details(request, category_id, id):
     return render(request, 'research_article_details.html', context)
 
 
-def request_stock(request, category_id, id,district_id=None):
+def request_stock(request, category_id, id, district_id=None):
     # book = get_object_or_404(Book, pk=pk)
     # if request.method == 'POST':
     #     form = BookForm(request.POST, instance=book)
@@ -280,3 +287,35 @@ def requested_stock(request, id):
         }
 
     return render(request, 'requested_stock_list.html', context)
+
+
+def update_status(request, category_id, id):
+    # book = get_object_or_404(Book, pk=pk)
+    # if request.method == 'POST':
+    #     form = BookForm(request.POST, instance=book)
+    # else:
+    #     form = BookForm(instance=book)
+    district = request.user.district_user_permissions.first().district
+    context = {}
+
+    # fetch the object related to passed id
+    obj = get_object_or_404(RequestedItem, id=id)
+    # category_id = obj.item.category
+    if category_id == 2:
+        category_id = 1
+
+    # pass the object as instance in form
+    form = RequestedStatusForm(request.POST or None, instance=obj)
+
+    # save the data from the form and
+    # redirect to detail_view
+    if form.is_valid():
+        form.save()
+        return HttpResponseRedirect("/requested_stock/{}".format(category_id))
+
+    # add form dictionary to context
+    context["form"] = form
+    context["category"] = category_id
+    context['district'] = district
+
+    return render(request, 'update_status.html', context)
