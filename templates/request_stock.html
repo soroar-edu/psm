@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+<!--{% load static %}-->
+
+
+{% block container %}
+<div class="container">
+    <form method="POST">
+        <!-- Security token by Django -->
+        {% csrf_token %}
+
+        <!-- form as paragraph -->
+        {{form.as_table}}
+
+        <input type="submit" value="Request">
+    </form>
+
+
+</div>
+
+
+
+{% endblock %}

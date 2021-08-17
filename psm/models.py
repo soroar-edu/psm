@@ -106,3 +106,23 @@ class DistrictStore(models.Model):
 class NeighborDistrict(models.Model):
     district = models.ForeignKey(District, on_delete=models.CASCADE, related_name='neighbor_districts')
     neighbor_district = models.ManyToManyField(District, related_name='districts')
+
+
+REQUEST_BODY = ((1, 'National'),
+                (2, 'NeighborDistrict'))
+
+STATUS = ((1, 'Pending'),
+          (2, 'Approved'))
+
+
+class RequestedItem(models.Model):
+    district = models.ForeignKey(District, on_delete=models.CASCADE, related_name='requested_items', blank=True,
+                                 null=True)
+    request_body = models.IntegerField(choices=REQUEST_BODY, default=1, blank=True, null=True)
+    request_to = models.ForeignKey(District, on_delete=models.CASCADE, related_name='request_items', null=True,
+                                   blank=True)
+    item = models.ForeignKey(Item, on_delete=models.CASCADE, related_name='requested_items', null=True, blank=True)
+    quantity = models.IntegerField()
+    status = models.IntegerField(choices=STATUS, default=1, blank=True, null=True)
+    created = models.DateTimeField(auto_now_add=True, null=True)
+    updated = models.DateTimeField(auto_now=True, null=True)

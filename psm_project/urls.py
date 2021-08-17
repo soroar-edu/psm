@@ -15,7 +15,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from psm.views import login, home, category, national_stock, update_stock, adjacent_district, notice,notice_details,research_article,research_article_details
+from psm.views import login, home, category, national_stock, update_stock, adjacent_district, notice, notice_details, \
+    research_article, research_article_details, request_stock, requested_stock
 from django.contrib.auth import views as auth_views
 from django.conf import settings
 from django.conf.urls.static import static
@@ -32,7 +33,11 @@ urlpatterns = [
     path('<int:category_id>/notice/', notice, name='notice'),
     path('<int:category_id>/notice/<int:id>', notice_details, name='notice_details'),
     path('<int:category_id>/research_article/', research_article, name='research_article'),
-    path('<int:category_id>/research_article/<int:id>', research_article_details, name='notice_details')
+    path('<int:category_id>/research_article/<int:id>', research_article_details, name='notice_details'),
+    path('request_stock/<int:category_id>/district/<int:district_id>/item/<int:id>', request_stock,
+         name='request_stock'),
+    path('request_stock/<int:category_id>/district/item/<int:id>/', request_stock, name='request_stock'),
+    path('requested_stock/<int:id>', requested_stock, name='requested_stock')
 
 ]
 if settings.DEBUG:
