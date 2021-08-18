@@ -34,12 +34,17 @@ class DistrictAdmin(admin.ModelAdmin):
     search_fields = ('name',)
 
 
+class ItemAdmin(admin.ModelAdmin):
+    model = Item
+    list_display = ('name','category','stock_quantity','distribution_type','distribution_amount')
+
+
 # Register your models here.
 
 # admin.site.register(Category, CategoryAdmin)
 admin.site.register(District, DistrictAdmin)
 admin.site.register(DistrictUserPermission)
-admin.site.register(Item)
+admin.site.register(Item,ItemAdmin)
 admin.site.register(Notice)
 admin.site.register(UserProfile)
 admin.site.register(NeighborDistrict)
