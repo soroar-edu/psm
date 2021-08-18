@@ -33,6 +33,17 @@ class RequestedStatusForm(forms.ModelForm):
             'status',)
 
 
+class CalculationForm(forms.ModelForm):
+    number_of_people = forms.FloatField()
+
+    class Meta:
+        model = DistrictStore
+        fields = (
+            'item',
+            'number_of_people'
+        )
+
+
 def login(request):
     return render(request, 'login.html')
 
@@ -319,3 +330,69 @@ def update_status(request, category_id, id):
     context['district'] = district
 
     return render(request, 'update_status.html', context)
+
+
+def calculation(request, category_id):
+    # book = get_object_or_404(Book, pk=pk)
+    # if request.method == 'POST':
+    #     form = BookForm(request.POST, instance=book)
+    # else:
+    #     form = BookForm(instance=book)
+    district = request.user.district_user_permissions.first().district
+    context = {}
+
+    # fetch the object related to passed id
+    # obj = get_object_or_404(RequestedItem, id=id)
+    # category_id = obj.item.category
+    if category_id == 2:
+        category_id = 1
+
+    # pass the object as instance in form
+    form = CalculationForm(request.POST or None)
+
+    # save the data from the form and
+    # redirect to detail_view
+    # if form.is_valid():
+    #     form.save()
+    #     return HttpResponseRedirect("/requested_stock/{}".format(category_id))
+
+    # add form dictionary to context
+    context["form"] = form
+    context["category"] = category_id
+    context['district'] = district
+
+    return render(request, 'calculation.html', context)
+
+
+def calculation_result(request, category_id):
+    district = request.user.district_user_permissions.first().district
+    context = {}
+
+    # fetch the object related to passed id
+    # obj = get_object_or_404(RequestedItem, id=id)
+    # category_id = obj.item.category
+    if category_id == 2:
+        category_id = 1
+    if request.method == 'POST':
+        item = request.POST['item']
+        item_obj = Item.objects.get(id=item)
+        number_of_people = int(request.POST['number_of_people'])
+        # print(type(number_of_people))
+        distribution_type = item_obj.distribution_type
+        distribution_amount = item_obj.distribution_amount
+        if distribution_type == 1:
+            calculated_item = number_of_people*distribution_amount
+        else:
+            calculated_item = int(round(number_of_people*distribution_amount/100))
+
+        # bodyGrith = request.POST['bodyGrith']
+        # bodyWeight = float(bodyLength) * float(bodyGrith) * float(bodyGrith) / 660
+        # bodyWeightRound = round(bodyWeight, 2)
+        print(calculated_item)
+        context["category"] = category_id
+        context['district'] = district
+        context['item'] = item
+        context['number_of_people'] = number_of_people
+        context['calculated_item'] = int(calculated_item)
+        return render(request, 'calculation_result.html', context)
+

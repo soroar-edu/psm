@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block container %}
+<div class="container">
+    <form method="POST" action="/calculation_result/{{category}}">
+        <!-- Security token by Django -->
+        {% csrf_token %}
+
+        <!-- form as paragraph -->
+        {{form}}
+
+        <input type="submit" value="Calculate">
+    </form>
+
+
+</div>
+
+
+
+{% endblock %}

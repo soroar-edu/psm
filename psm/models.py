@@ -26,6 +26,9 @@ CATEGORY_TYPE = ((1, 'Covid Medical Item'),
                  (3, 'Dengue/Chikungunya'),
                  (4, 'Cholera'))
 
+DISTRIBUTION_TYPE = ((1, 'Per Person'),
+                     (2, 'Percentage'),)
+
 
 class Item(models.Model):
     name = models.CharField(max_length=120)
@@ -33,6 +36,8 @@ class Item(models.Model):
     stock_quantity = models.IntegerField(null=True, blank=True)
     used_quantity = models.IntegerField(null=True, blank=True)
     image = models.ImageField(null=True, blank=True)
+    distribution_type = models.IntegerField(choices=DISTRIBUTION_TYPE, null=True, blank=True, default=1)
+    distribution_amount = models.FloatField(null=True,blank=True)
     created = models.DateTimeField(auto_now_add=True, null=True)
     updated = models.DateTimeField(auto_now=True, null=True)
 
