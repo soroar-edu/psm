@@ -3,6 +3,22 @@
   <component name="ChangeListManager">
     <list default="true" id="df74a109-5e8c-4d77-acec-ef74af116448" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/psm/migrations/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/psm/migrations/0002_auto_20210809_0645.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/psm/migrations/0003_districtstore.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/psm/migrations/0004_auto_20210813_1453.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/psm/migrations/0005_item_image.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/psm/migrations/0006_alter_item_category.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/psm/migrations/0007_adjacentdistrict.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/psm/migrations/0008_auto_20210816_1809.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/psm/migrations/0009_researcharticle.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/psm/migrations/0010_requesteditem.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/psm/migrations/0011_auto_20210817_1142.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/psm/migrations/0012_auto_20210817_1412.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/psm/migrations/0013_auto_20210817_1417.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/psm/migrations/0014_requesteditem_item.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/psm/migrations/0015_auto_20210817_1918.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/psm_project/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/psm_project/settings.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
