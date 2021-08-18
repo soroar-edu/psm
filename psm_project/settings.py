@@ -81,7 +81,7 @@ WSGI_APPLICATION = 'psm_project.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'psm_db',
+        'NAME': 'soroar11$psm_db',
         'HOST': 'soroar11.mysql.pythonanywhere-services.com',
         'PORT': '3306',
         'USER': 'soroar11',
