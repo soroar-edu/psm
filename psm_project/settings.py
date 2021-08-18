@@ -80,8 +80,15 @@ WSGI_APPLICATION = 'psm_project.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'psm_db',
+        'HOST': 'soroar11.mysql.pythonanywhere-services.com',
+        'PORT': '3306',
+        'USER': 'soroar11',
+        'PASSWORD': 'psm#edu11',
+        'OPTIONS': {
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
+        },
     }
 }
 
