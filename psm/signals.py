@@ -15,6 +15,9 @@ def update_purchase_store_contact(sender, instance, created=None, *args, **kwarg
             district_store = DistrictStore.objects.filter(district=instance.request_to).first()
             district_store.stock_quantity -= instance.quantity
             district_store.save()
-        district_store = DistrictStore.objects.filter(district=instance.district).first()
-        district_store.stock_quantity += instance.quantity
-        district_store.save()
+        if DistrictStore.objects.filter(district=instance.district, item=item).exists():
+            district_store = DistrictStore.objects.filter(district=instance.district, item=item).first()
+            district_store.stock_quantity += instance.quantity
+            district_store.save()
+        else:
+            DistrictStore.objects.create(district=instance.district,item=item,stock_quantity=instance.quantity)
