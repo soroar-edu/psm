@@ -18,9 +18,9 @@ import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-AdminSite.site_title = ugettext_lazy('Pandemic Supply Management Admin')
-AdminSite.site_header = ugettext_lazy('Pandemic Supply Management Administration')
-AdminSite.index_title = ugettext_lazy('Pandemic Supply Management ADMINISTRATION')
+AdminSite.site_title = ugettext_lazy('ONLINE SUPPLY MANAGEMENT FOR A PANDEMIC PERIOD Admin')
+AdminSite.site_header = ugettext_lazy('ONLINE SUPPLY MANAGEMENT FOR A PANDEMIC PERIOD Administration')
+AdminSite.index_title = ugettext_lazy('ONLINE SUPPLY MANAGEMENT FOR A PANDEMIC PERIOD ADMINISTRATION')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'psm',
+    'django_extensions'
 ]
 
 MIDDLEWARE = [
@@ -91,6 +92,12 @@ DATABASES = {
         },
     }}
 
+# DATABASES = {
+#         'default': {
+#             'ENGINE': 'django.db.backends.sqlite3',
+#             'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#         }
+#     }
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators

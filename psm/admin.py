@@ -22,6 +22,46 @@ class NeighborDistrictForm(forms.ModelForm):
         ]
 
 
+class NoticeForm(forms.ModelForm):
+    body = forms.CharField(
+        label="Notice Body",
+        # help_text="diner notes",
+        required=False,
+        widget=forms.Textarea(
+            attrs={'cols': '90', 'rows': '10'},
+
+        )
+    )
+
+    class Meta:
+        model = Notice
+        fields = [
+            'title',
+            'body',
+            'image'
+
+        ]
+
+
+class ResearchArticleForm(forms.ModelForm):
+    body = forms.CharField(
+        label="Research Article Body",
+        # help_text="diner notes",
+        required=False,
+        widget=forms.Textarea(
+            attrs={'cols': '90', 'rows': '10'},
+
+        )
+    )
+
+    class Meta:
+        model = ResearchArticle
+        fields = [
+            'title',
+            'body',
+            'image']
+
+
 class NeighborDistrictAdmin(admin.ModelAdmin):
     form = NeighborDistrictForm
 
@@ -64,14 +104,24 @@ class RequestedItemAdmin(admin.ModelAdmin):
     list_filter = ('request_body', 'status')
 
 
+class NoticeAdmin(admin.ModelAdmin):
+    form = NoticeForm
+    list_display = ('title',)
+
+
+class ResearchArticleAdmin(admin.ModelAdmin):
+    form = ResearchArticleForm
+    list_display = ('title',)
+
+
 # Register your models here.
 
 # admin.site.register(Category, CategoryAdmin)
 admin.site.register(District, DistrictAdmin)
 admin.site.register(DistrictUserPermission, DistrictUserPermissionAdmin)
 admin.site.register(Item, ItemAdmin)
-admin.site.register(Notice)
+admin.site.register(Notice, NoticeAdmin)
 admin.site.register(UserProfile)
 admin.site.register(NeighborDistrict, NeighborDistrictAdmin)
-admin.site.register(ResearchArticle)
+admin.site.register(ResearchArticle,ResearchArticleAdmin)
 admin.site.register(RequestedItem, RequestedItemAdmin)
