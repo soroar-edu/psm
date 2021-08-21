@@ -38,7 +38,7 @@ class NoticeForm(forms.ModelForm):
         fields = [
             'title',
             'body',
-            'image'
+            'file'
 
         ]
 
@@ -59,7 +59,7 @@ class ResearchArticleForm(forms.ModelForm):
         fields = [
             'title',
             'body',
-            'image']
+            'file']
 
 
 class NeighborDistrictAdmin(admin.ModelAdmin):

@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load mathfilters %}
 
 
 {% block container %}
@@ -9,15 +10,23 @@
       <tr>
         <th>Item</th>
         <th>Number of People</th>
-          <th>Needed Item</th>
+          <th>Calculated Amount</th>
+          <th>Stock Amount</th>
+          <th>Needed Amount</th>
 <!--        <th>Used Quantity</th>-->
       </tr>
     </thead>
+    {% for item in items %}
     <tr>
-        <td>{{item}}</td>
+<!--        {{item}}-->
+        <td><img class="img-fluid" src="{{item.image.url}}" width="30px" height="30px"> {{item.name}}</td>
         <td>{{number_of_people}}</td>
-        <td>{{calculated_item}}</td>
-    </tr>
+        <td>{{item.calculated_amount}}</td>
+       <td>{{item.stock_amount}}</td>
+        <td>{{item.needed_amount}}</td>
+        </tr>
+
+    {% endfor %}
 </table>
 
 </div>

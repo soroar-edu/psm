@@ -6,6 +6,11 @@
 <p>{{research_article.title}}</p>
     <hr>
     <p>{{research_article.body}}</p>
-    <p><img class="img-fluid" src="{{research_article.image.url}}"></p>
+    {% if research_article.file %}
+    <p>
+        <a href="{{ research_article.file.url }}"><button class="btn btn-outline-primary">Read Research Article File</button></a>
+        <a download href="{{ research_article.file.url }}"><button class="btn btn-outline-success">Download Research Article File</button></a>
+    </p>
+    {% endif %}
 </div>
 {% endblock %}

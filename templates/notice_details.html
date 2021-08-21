@@ -6,6 +6,11 @@
 <p>{{notice.title}}</p>
     <hr>
     <p>{{notice.body}}</p>
-    <p><img class="img-fluid" src="{{notice.image.url}}"> </p>
+    {% if notice.file %}
+    <p>
+        <a href="{{ notice.file.url }}"><button class="btn btn-outline-primary">Read Notice File</button></a>
+        <a download href="{{ notice.file.url }}"><button class="btn btn-outline-success">Download Notice File</button></a>
+    </p>
+    {% endif %}
 </div>
 {% endblock %}

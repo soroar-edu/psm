@@ -47,8 +47,8 @@ class Item(models.Model):
 
 class Notice(models.Model):
     title = models.CharField(max_length=120)
-    body = models.CharField(max_length=500)
-    image = models.ImageField(null=True, blank=True)
+    body = models.CharField(max_length=2000)
+    file = models.FileField(null=True, blank=True)
     created = models.DateTimeField(auto_now_add=True, null=True)
     updated = models.DateTimeField(auto_now=True, null=True)
 
@@ -58,8 +58,8 @@ class Notice(models.Model):
 
 class ResearchArticle(models.Model):
     title = models.CharField(max_length=120)
-    body = models.CharField(max_length=500)
-    image = models.ImageField(null=True, blank=True)
+    body = models.CharField(max_length=2000)
+    file = models.FileField(null=True, blank=True)
     created = models.DateTimeField(auto_now_add=True, null=True)
     updated = models.DateTimeField(auto_now=True, null=True)
 

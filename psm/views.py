@@ -33,15 +33,20 @@ class RequestedStatusForm(forms.ModelForm):
             'status',)
 
 
-class CalculationForm(forms.ModelForm):
+CATEGORY = ((1, 'Covid Medical Item'),
+            (2, 'Covid Safety Item'),)
+
+
+class CalculationForm(forms.Form):
+    category = forms.ChoiceField(choices=CATEGORY)
     number_of_people = forms.FloatField()
 
-    class Meta:
-        model = DistrictStore
-        fields = (
-            'item',
-            'number_of_people'
-        )
+    # class Meta:
+    #     model = DistrictStore
+    #     fields = (
+    #         'item',
+    #         'number_of_people'
+    #     )
 
 
 def login(request):
@@ -333,30 +338,14 @@ def update_status(request, category_id, id):
 
 
 def calculation(request, category_id):
-    # book = get_object_or_404(Book, pk=pk)
-    # if request.method == 'POST':
-    #     form = BookForm(request.POST, instance=book)
-    # else:
-    #     form = BookForm(instance=book)
     district = request.user.district_user_permissions.first().district
     context = {}
 
-    # fetch the object related to passed id
-    # obj = get_object_or_404(RequestedItem, id=id)
-    # category_id = obj.item.category
     if category_id == 2:
         category_id = 1
 
-    # pass the object as instance in form
     form = CalculationForm(request.POST or None)
 
-    # save the data from the form and
-    # redirect to detail_view
-    # if form.is_valid():
-    #     form.save()
-    #     return HttpResponseRedirect("/requested_stock/{}".format(category_id))
-
-    # add form dictionary to context
     context["form"] = form
     context["category"] = category_id
     context['district'] = district
@@ -373,26 +362,43 @@ def calculation_result(request, category_id):
     # category_id = obj.item.category
     if category_id == 2:
         category_id = 1
+    item_list = []
     if request.method == 'POST':
-        item = request.POST['item']
-        item_obj = Item.objects.get(id=item)
+        category = int(request.POST['category'])
+        items = Item.objects.filter(category=category)
+        # print(type(category))
+        # print(items)
         number_of_people = int(request.POST['number_of_people'])
-        # print(type(number_of_people))
-        distribution_type = item_obj.distribution_type
-        distribution_amount = item_obj.distribution_amount
-        if distribution_type == 1:
-            calculated_item = number_of_people*distribution_amount
-        else:
-            calculated_item = int(round(number_of_people*distribution_amount/100))
+        for item in items:
+            distribution_type = item.distribution_type
+            distribution_amount = item.distribution_amount
+            if distribution_type == 1:
+                calculated_amount = number_of_people * distribution_amount
+            else:
+                calculated_amount = int(round(number_of_people * distribution_amount / 100))
+            if item.district_stores.first():
+                stock_amount = item.district_stores.first().stock_quantity
+            else:
+                stock_amount = 0
 
-        # bodyGrith = request.POST['bodyGrith']
-        # bodyWeight = float(bodyLength) * float(bodyGrith) * float(bodyGrith) / 660
-        # bodyWeightRound = round(bodyWeight, 2)
-        print(calculated_item)
+            if stock_amount > calculated_amount:
+                needed_amount = 0
+            else:
+                needed_amount = calculated_amount - stock_amount
+
+            item_dict = {
+                'name': item.name,
+                'image': item.image,
+                'calculated_amount': int(calculated_amount),
+                'stock_amount': stock_amount,
+                'needed_amount': int(needed_amount)
+            }
+
+            item_list.append(item_dict)
+
         context["category"] = category_id
         context['district'] = district
-        context['item'] = item
+        context['items'] = item_list
         context['number_of_people'] = number_of_people
-        context['calculated_item'] = int(calculated_item)
+        # context['calculated_item'] = int(calculated_item)
         return render(request, 'calculation_result.html', context)
-

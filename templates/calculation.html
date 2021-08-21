@@ -9,7 +9,7 @@
         {% csrf_token %}
 
         <!-- form as paragraph -->
-        {{form}}
+        {{form.as_table}}
 
         <input type="submit" value="Calculate">
     </form>
