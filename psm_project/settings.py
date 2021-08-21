@@ -43,8 +43,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'psm',
-    'django_extensions',
-    'mathfilters',
+    # 'django_extensions',
+    # 'mathfilters',
 ]
 
 MIDDLEWARE = [
@@ -80,25 +80,25 @@ WSGI_APPLICATION = 'psm_project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.mysql',
-#         'NAME': 'soroar11$psm_db',
-#         'HOST': 'soroar11.mysql.pythonanywhere-services.com',
-#         'PORT': '3306',
-#         'USER': 'soroar11',
-#         'PASSWORD': 'psm#edu11',
-#         'OPTIONS': {
-#             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
-#         },
-#     }}
-
 DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-        }
-    }
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'soroar11$psm_db',
+        'HOST': 'soroar11.mysql.pythonanywhere-services.com',
+        'PORT': '3306',
+        'USER': 'soroar11',
+        'PASSWORD': 'psm#edu11',
+        'OPTIONS': {
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
+        },
+    }}
+
+# DATABASES = {
+#         'default': {
+#             'ENGINE': 'django.db.backends.sqlite3',
+#             'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#         }
+#     }
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
