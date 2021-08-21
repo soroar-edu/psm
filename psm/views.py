@@ -8,6 +8,7 @@ from .models import DistrictStore, District, Notice, ResearchArticle, RequestedI
 from .models import Item
 from django.db.models import Q
 
+
 class DistrictStoreForm(forms.ModelForm):
     class Meta:
         model = DistrictStore
@@ -284,21 +285,25 @@ def requested_stock(request, id):
         context = {
             'category': id,
             'district': district,
-            'hygenic_items': RequestedItem.objects.filter(item__category=2).filter(Q(district=district)|Q(item__category=2)),
-            'medical_items': RequestedItem.objects.filter(Q(district=district, item__category=1)|Q(request_to=district,item__category=1)),
+            'hygenic_items': RequestedItem.objects.filter(item__category=2).filter(
+                Q(district=district) | Q(request_to=district)),
+            'medical_items': RequestedItem.objects.filter(
+                Q(district=district, item__category=1) | Q(request_to=district, item__category=1)),
         }
     if id == 3:
         context = {
             'category': id,
             'district': district,
-            'dengu_items': RequestedItem.objects.filter(item__category=3).filter(Q(district=district)|Q(requested_to=district)),
+            'dengu_items': RequestedItem.objects.filter(item__category=3).filter(
+                Q(district=district) | Q(requested_to=district)),
 
         }
     if id == 4:
         context = {
             'category': id,
             'district': district,
-            'cholera_items': RequestedItem.objects.filter(item__category=4).filter(Q(district=district)|Q(request_to=district)),
+            'cholera_items': RequestedItem.objects.filter(item__category=4).filter(
+                Q(district=district) | Q(request_to=district)),
 
         }
 
