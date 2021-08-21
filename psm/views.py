@@ -267,7 +267,7 @@ def request_stock(request, category_id, id, district_id=None):
             request_item.request_to = District.objects.get(id=district_id)
         request_item.item = Item.objects.get(id=id)
         request_item.save()
-        return HttpResponseRedirect("/category/{}".format(category_id))
+        return HttpResponseRedirect("/national_stock/{}".format(category_id))
 
     # add form dictionary to context
     context["form"] = form

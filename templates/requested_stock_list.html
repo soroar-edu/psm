@@ -52,18 +52,32 @@
 <table class="table table-hover table-bordered">
         <thead><h4>Covid Medical Items</h4></thead>
       <tr>
-        <th>Item</th>
-        <th>Stock Quantity</th>
-<!--        <th>Used Quantity</th>-->
+       <th>Item</th>
+          <th>Quantity</th>
+        <th>Request Body</th>
+        <th>Request To</th>
+          <th>Status</th>
+          <th>Requested Time</th>
       </tr>
     </thead>
     <tbody>
     {% for item in medical_items %}
       <tr>
-        <td><img class="img-fluid" src="{{item.image.url}}" width="30px" height="30px">  {{item.name}}</td>
-        <td>{{item.stock_quantity}}</td>
-        <td>      <a href="/request_stock/{{category}}/district/{{neighbour_district.id}}" class="btn btn-success btn-sm" role="button"><i class="fa fa-plus-circle"></i> Request</a>
+        <td><img class="img-fluid" src="{{item.item.image.url}}" width="30px" height="30px">  {{item.item.name}}</td>
+        <td>{{item.quantity}}</td>
+          <td>{{item.get_request_body_display}}</td>
+          <td>{{item.request_to}}</td>
+          <td>{{item.get_status_display}}</td>
+          <td>{{item.created}}</td>
+<!--          {{item.request_to}}-->
+          {% if item.request_to == district %}
+          {% if item.status == 1 %}
+
+        <td>
+            <a href="/requested_stock/{{category}}/update_status/{{item.id}}" class="btn btn-success btn-sm" role="button"><i class="fa fa-plus-circle"></i> Update Status</a>
 </td>
+          {% endif %}
+          {% endif %}
       </tr>
 
     {% endfor %}
@@ -80,18 +94,32 @@
 <table class="table table-hover table-bordered">
         <thead><h4>Dengu Items</h4></thead>
       <tr>
-        <th>Item</th>
-        <th>Stock Quantity</th>
-<!--        <th>Used Quantity</th>-->
+       <th>Item</th>
+          <th>Quantity</th>
+        <th>Request Body</th>
+        <th>Request To</th>
+          <th>Status</th>
+          <th>Requested Time</th>
       </tr>
     </thead>
     <tbody>
     {% for item in dengu_items %}
       <tr>
-        <td><img class="img-fluid" src="{{item.image.url}}" width="30px" height="30px">  {{item.name}}</td>
-        <td>{{item.stock_quantity}}</td>
-        <td>      <a href="/request_stock/{{category}}/district/{{neighbour_district.id}}" class="btn btn-success btn-sm" role="button"><i class="fa fa-plus-circle"></i> Request</a>
+        <td><img class="img-fluid" src="{{item.item.image.url}}" width="30px" height="30px">  {{item.item.name}}</td>
+        <td>{{item.quantity}}</td>
+          <td>{{item.get_request_body_display}}</td>
+          <td>{{item.request_to}}</td>
+          <td>{{item.get_status_display}}</td>
+          <td>{{item.created}}</td>
+<!--          {{item.request_to}}-->
+          {% if item.request_to == district %}
+          {% if item.status == 1 %}
+
+        <td>
+            <a href="/requested_stock/{{category}}/update_status/{{item.id}}" class="btn btn-success btn-sm" role="button"><i class="fa fa-plus-circle"></i> Update Status</a>
 </td>
+          {% endif %}
+          {% endif %}
       </tr>
 
     {% endfor %}
@@ -107,18 +135,32 @@
 <table class="table table-hover table-bordered">
         <thead><h4>Cholera Items</h4></thead>
       <tr>
-        <th>Item</th>
-        <th>Stock Quantity</th>
-<!--        <th>Used Quantity</th>-->
+       <th>Item</th>
+          <th>Quantity</th>
+        <th>Request Body</th>
+        <th>Request To</th>
+          <th>Status</th>
+          <th>Requested Time</th>
       </tr>
     </thead>
     <tbody>
     {% for item in cholera_items %}
       <tr>
-        <td><img class="img-fluid" src="{{item.image.url}}" width="30px" height="30px">  {{item.name}}</td>
-        <td>{{item.stock_quantity}}</td>
-        <td>      <a href="/request_stock/{{category}}/district/" class="btn btn-success btn-sm" role="button"><i class="fa fa-plus-circle"></i> Request</a>
+        <td><img class="img-fluid" src="{{item.item.image.url}}" width="30px" height="30px">  {{item.item.name}}</td>
+        <td>{{item.quantity}}</td>
+          <td>{{item.get_request_body_display}}</td>
+          <td>{{item.request_to}}</td>
+          <td>{{item.get_status_display}}</td>
+          <td>{{item.created}}</td>
+<!--          {{item.request_to}}-->
+          {% if item.request_to == district %}
+          {% if item.status == 1 %}
+
+        <td>
+            <a href="/requested_stock/{{category}}/update_status/{{item.id}}" class="btn btn-success btn-sm" role="button"><i class="fa fa-plus-circle"></i> Update Status</a>
 </td>
+          {% endif %}
+          {% endif %}
       </tr>
 
     {% endfor %}
