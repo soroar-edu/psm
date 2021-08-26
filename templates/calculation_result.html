@@ -23,6 +23,8 @@
         <td>{{item.calculated_amount}}</td>
        <td>{{item.stock_amount}}</td>
         <td>{{item.needed_amount}}</td>
+                <td>      <a href="/request_stock/{{category}}/district/item/{{item.id}}/quantity/{{item.needed_amount}}" class="btn btn-success btn-sm" role="button"><i class="fa fa-plus-circle"></i> Request</a>
+
         </tr>
 
     {% endfor %}

@@ -7,6 +7,8 @@ from django.shortcuts import (get_object_or_404,
 from .models import DistrictStore, District, Notice, ResearchArticle, RequestedItem
 from .models import Item
 from django.db.models import Q
+from django.urls import reverse
+from django.shortcuts import redirect
 
 
 class DistrictStoreForm(forms.ModelForm):
@@ -240,7 +242,7 @@ def research_article_details(request, category_id, id):
     return render(request, 'research_article_details.html', context)
 
 
-def request_stock(request, category_id, id, district_id=None):
+def request_stock(request, category_id, id, district_id=None,quantity=None):
     # book = get_object_or_404(Book, pk=pk)
     # if request.method == 'POST':
     #     form = BookForm(request.POST, instance=book)
@@ -256,7 +258,7 @@ def request_stock(request, category_id, id, district_id=None):
         category_id = 1
 
     # pass the object as instance in form
-    form = RequestedItemForm(request.POST or None)
+    form = RequestedItemForm(request.POST or None,initial={'quantity': quantity})
 
     # save the data from the form and
     # redirect to detail_view
@@ -274,6 +276,7 @@ def request_stock(request, category_id, id, district_id=None):
     context["form"] = form
     context["category"] = category_id
     context['district'] = district
+    context['quantity'] = quantity
 
     return render(request, 'request_stock.html', context)
 
@@ -392,6 +395,7 @@ def calculation_result(request, category_id):
                 needed_amount = calculated_amount - stock_amount
 
             item_dict = {
+                'id': item.id,
                 'name': item.name,
                 'image': item.image,
                 'calculated_amount': int(calculated_amount),
@@ -407,3 +411,4 @@ def calculation_result(request, category_id):
         context['number_of_people'] = number_of_people
         # context['calculated_item'] = int(calculated_item)
         return render(request, 'calculation_result.html', context)
+    return redirect(reverse('calculation', kwargs={'category_id': category_id}))
