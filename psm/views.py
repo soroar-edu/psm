@@ -396,8 +396,8 @@ def calculation_result(request, category_id):
             else:
                 needed_amount = calculated_amount - stock_amount
             pending_amount = sum(item.requested_items.filter(status=1).values_list('quantity', flat=True))
-            print(pending_amount)
-            if pending_amount >= calculated_amount:
+            # print(pending_amount)
+            if pending_amount+stock_amount >= calculated_amount:
                 is_request = False
             else:
                 is_request = True

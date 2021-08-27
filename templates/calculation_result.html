@@ -28,13 +28,11 @@
 
         <td>
              {% if item.is_request %}
-            <button type="submit" id="request"  value="{{item.needed_amount}}" class="btn btn-success btn-sm">Request</button>
-        {% else %}
-        Pending request amount is grater than calculated amount
-
-        {% endif %}
-             <script type="text/javascript">
-    $('#request').click(function(){
+            <button type="submit" id="request{{item.id}}"  value="{{item.needed_amount}}" class="btn btn-success btn-sm">Request</button>
+            <script type="text/javascript">
+            var requestID = "#request"+"{{item.id}}";
+<!--            alert(a)-->
+    $(requestID).click(function(){
 
     var quantity =  $(this).val();
     alert("Request quantity is "+quantity);
@@ -55,6 +53,14 @@
      })
 });
 </script>
+
+
+
+        {% else %}
+        Pending request amount is grater than calculated amount
+
+        {% endif %}
+
 
         </td>
 
