@@ -37,7 +37,7 @@ urlpatterns = [
     path('request_stock/<int:category_id>/district/<int:district_id>/item/<int:id>', request_stock,
          name='request_stock'),
     path('request_stock/<int:category_id>/district/item/<int:id>/', request_stock, name='request_stock'),
-    path('request_stock/<int:category_id>/district/item/<int:id>/quantity/<int:quantity>', request_stock, name='request_stock'),
+    path('request_stock/<int:category_id>/district/item/<int:id>/quantity/<int:quantity>', request_stock, name='request_stock1'),
 
     path('requested_stock/<int:id>', requested_stock, name='requested_stock'),
     path('requested_stock/<int:category_id>/update_status/<int:id>', update_status, name='update_status'),

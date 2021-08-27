@@ -3,6 +3,7 @@
 
 
 {% block container %}
+
 <div class="container">
 <table class="table table-hover table-bordered">
         <thead><h4>Calculation Result</h4></thead>
@@ -23,9 +24,43 @@
         <td>{{item.calculated_amount}}</td>
        <td>{{item.stock_amount}}</td>
         <td>{{item.needed_amount}}</td>
-                <td>      <a href="/request_stock/{{category}}/district/item/{{item.id}}/quantity/{{item.needed_amount}}" class="btn btn-success btn-sm" role="button"><i class="fa fa-plus-circle"></i> Request</a>
 
-        </tr>
+
+        <td>
+             {% if item.is_request %}
+            <button type="submit" id="request"  value="{{item.needed_amount}}" class="btn btn-success btn-sm">Request</button>
+        {% else %}
+        Pending request amount is grater than calculated amount
+
+        {% endif %}
+             <script type="text/javascript">
+    $('#request').click(function(){
+
+    var quantity =  $(this).val();
+    alert("Request quantity is "+quantity);
+
+    $.ajax(
+    {
+
+<!--        type:"POST",-->
+        url: '{% url "request_stock1" category item.id item.needed_amount %}',
+<!--        data: {'quantity':quantity},-->
+<!--        dataType: 'json',-->
+
+        success: function()
+        {
+            alert("Request is Placed Successfully");
+            location.reload();
+        }
+     })
+});
+</script>
+
+        </td>
+
+
+
+ </tr>
 
     {% endfor %}
 </table>
@@ -33,5 +68,11 @@
 </div>
 
 
+{% endblock %}
 
+{% block footer %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 {% endblock %}

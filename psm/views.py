@@ -242,23 +242,19 @@ def research_article_details(request, category_id, id):
     return render(request, 'research_article_details.html', context)
 
 
-def request_stock(request, category_id, id, district_id=None,quantity=None):
-    # book = get_object_or_404(Book, pk=pk)
-    # if request.method == 'POST':
-    #     form = BookForm(request.POST, instance=book)
-    # else:
-    #     form = BookForm(instance=book)
+def request_stock(request, category_id, id, district_id=None, quantity=None):
     district = request.user.district_user_permissions.first().district
     context = {}
+    if request.method == "GET":
+        item = Item.objects.get(id=id)
+        request_item = RequestedItem(district=district, item=item, quantity=quantity)
+        request_item.save()
 
-    # fetch the object related to passed id
-    # obj = get_object_or_404(DistrictStore, id=id)
-    # category_id = obj.item.category
     if category_id == 2:
         category_id = 1
 
     # pass the object as instance in form
-    form = RequestedItemForm(request.POST or None,initial={'quantity': quantity})
+    form = RequestedItemForm(request.POST or None, initial={'quantity': quantity})
 
     # save the data from the form and
     # redirect to detail_view
@@ -270,6 +266,12 @@ def request_stock(request, category_id, id, district_id=None,quantity=None):
             request_item.request_to = District.objects.get(id=district_id)
         request_item.item = Item.objects.get(id=id)
         request_item.save()
+        # if quantity:
+        #     next = request.POST.get('next', '/')
+        #     return HttpResponseRedirect('/calculation_result/1')
+        #     return redirect(request.META.get('HTTP_REFERER'))
+        #     # return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+        #     # return HttpResponseRedirect("/national_stock/{}".format(category_id))
         return HttpResponseRedirect("/national_stock/{}".format(category_id))
 
     # add form dictionary to context
@@ -393,14 +395,20 @@ def calculation_result(request, category_id):
                 needed_amount = 0
             else:
                 needed_amount = calculated_amount - stock_amount
-
+            pending_amount = sum(item.requested_items.filter(status=1).values_list('quantity', flat=True))
+            print(pending_amount)
+            if pending_amount >= calculated_amount:
+                is_request = False
+            else:
+                is_request = True
             item_dict = {
                 'id': item.id,
                 'name': item.name,
                 'image': item.image,
                 'calculated_amount': int(calculated_amount),
                 'stock_amount': stock_amount,
-                'needed_amount': int(needed_amount)
+                'needed_amount': int(needed_amount),
+                'is_request': is_request
             }
 
             item_list.append(item_dict)
@@ -409,6 +417,7 @@ def calculation_result(request, category_id):
         context['district'] = district
         context['items'] = item_list
         context['number_of_people'] = number_of_people
+        context['form'] = RequestedItemForm()
         # context['calculated_item'] = int(calculated_item)
         return render(request, 'calculation_result.html', context)
     return redirect(reverse('calculation', kwargs={'category_id': category_id}))
