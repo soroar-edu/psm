@@ -245,7 +245,7 @@ def research_article_details(request, category_id, id):
 def request_stock(request, category_id, id, district_id=None, quantity=None):
     district = request.user.district_user_permissions.first().district
     context = {}
-    if request.method == "GET":
+    if request.method == "GET" and quantity:
         item = Item.objects.get(id=id)
         request_item = RequestedItem(district=district, item=item, quantity=quantity)
         request_item.save()
